@@ -1,17 +1,12 @@
-import React from "react";
-import Button from "@mui/material/Button";
-import AccessibilityIcon from "@mui/icons-material/Accessibility";
+import React, { FC } from "react";
+import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
 
-function App() {
-  return (
-    <div>
-      <Button variant="contained">
-        <AccessibilityIcon /> Hello World
-      </Button>
-    </div>
-  );
-}
-
-export default App;
+export const App: FC = () => (
+  <Routes>
+    <Route path="login" element={<div>Auth page</div>} />
+    <Route path="/" element={<div>App page</div>} />
+    <Route path="*" element={<div>404</div>} />
+  </Routes>
+);

@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import CssBaseline from "@mui/material/CssBaseline";
-import "./index.css";
 import { ThemeProvider } from "@mui/material/styles";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/700.css";
-import App from "./App";
+import { BrowserRouter } from "react-router-dom";
+
+import "./index.css";
+import { App } from "./App";
 import theme from "./theme";
 
 const root = ReactDOM.createRoot(
@@ -13,9 +15,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <App />
-    </ThemeProvider>
+    <BrowserRouter basename="/pomo-time-management">
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
+    </BrowserRouter>
   </React.StrictMode>,
 );
