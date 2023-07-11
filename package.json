@@ -26,7 +26,9 @@
     "eject": "react-scripts eject",
     "prepare": "husky install",
     "lint": "prettier --check . && eslint --ext .js,.jsx,.tsx,.ts .",
-    "lint:fix": "prettier --write . && eslint --fix --ext .js,.jsx,.tsx,.ts ."
+    "lint:fix": "prettier --write . && eslint --fix --ext .js,.jsx,.tsx,.ts .",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
@@ -49,5 +51,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
   }
 }
