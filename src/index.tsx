@@ -7,17 +7,21 @@ import "@fontsource/roboto/700.css";
 import { BrowserRouter } from "react-router-dom";
 
 import "./index.css";
-import { App } from "./App";
-import theme from "./theme";
+import { App } from "./app/App";
+import theme from "./app/theme";
+import { store } from "./app/store";
+import { Provider } from "react-redux";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
 );
 root.render(
   <BrowserRouter basename="/pomo-time-management">
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <App />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
+    </Provider>
   </BrowserRouter>,
 );

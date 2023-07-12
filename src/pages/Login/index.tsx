@@ -5,11 +5,14 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import { UserCredential } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 import { auth } from "../../services/firebase";
 import SignInWithGoogle from "./SignInWithGoogle";
 import SignInWithGithub from "./SignInWithGithub";
-import { UserCredential } from "firebase/auth";
+import { useAppDispatch } from "../../app/hooks";
+import { setAuthCredentials } from "./authSlice";
 
 const Copyright: FC<any> = (props) => (
   <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -23,7 +26,13 @@ const Copyright: FC<any> = (props) => (
 );
 
 const Login: FC = () => {
-  const handleSuccess = (user: UserCredential) => console.log(user);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const handleSuccess = ({ user }: UserCredential) => {
+    dispatch(setAuthCredentials(user));
+    navigate("/");
+  };
   const handleError = (error: Error) => console.log(error);
 
   return (
