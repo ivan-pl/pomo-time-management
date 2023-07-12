@@ -5,7 +5,7 @@ import { red } from "@mui/material/colors";
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#556cd6",
+      main: "#db6b63",
     },
     secondary: {
       main: "#19857b",
@@ -15,6 +15,15 @@ const theme = createTheme({
     },
     background: {
       default: "#db6b63",
+    },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          background: "#c96d6d",
+        },
+      },
     },
   },
 });

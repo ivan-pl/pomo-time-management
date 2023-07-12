@@ -1,10 +1,12 @@
 import React, { FC, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Stack from "@mui/material/Stack";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { selectAuthCredentials } from "../../app/selectors";
 import { isCredentialsValid } from "../../services/firebase/isCredentialsValid";
 import { clearAuthCredentials, setAuthCredentials } from "../Login/authSlice";
+import MenuBar from "./MenuBar";
 
 const Home: FC = () => {
   const navigate = useNavigate();
@@ -29,7 +31,16 @@ const Home: FC = () => {
     }
   }, []);
 
-  return <div>Application</div>;
+  return (
+    <Stack
+      spacing={2}
+      sx={{ maxWidth: "768px", minWidth: "350px", margin: "auto" }}
+    >
+      <MenuBar />
+      <div>Timer</div>
+      <div>TodoList</div>
+    </Stack>
+  );
 };
 
 export default Home;

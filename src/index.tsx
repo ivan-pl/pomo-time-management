@@ -6,7 +6,6 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/700.css";
 import { BrowserRouter } from "react-router-dom";
 
-import "./index.css";
 import { App } from "./app/App";
 import theme from "./app/theme";
 import { store } from "./app/store";
