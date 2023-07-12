@@ -1,8 +1,9 @@
 import React from "react";
 import { Box, Button, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Error() {
+  const navigate = useNavigate();
   return (
     <Box
       sx={{
@@ -19,14 +20,13 @@ export default function Error() {
       <Typography variant="h6" style={{ color: "white" }}>
         The page you’re looking for doesn’t exist.
       </Typography>
-      <Link to={"/"}>
-        <Button
-          variant="contained"
-          sx={{ backgroundColor: "white", color: "#db6b63" }}
-        >
-          Back Home
-        </Button>
-      </Link>
+      <Button
+        variant="contained"
+        sx={{ backgroundColor: "white", color: "#db6b63" }}
+        onClick={() => navigate("/")}
+      >
+        Back Home
+      </Button>
     </Box>
   );
 }
