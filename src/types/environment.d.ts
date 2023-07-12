@@ -9,6 +9,7 @@ declare global {
       REACT_APP_storageBucket: string;
       REACT_APP_messagingSenderId: string;
       REACT_APP_appId: string;
+      REACT_APP_databaseUrl: string;
     }
   }
 }

@@ -1,13 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { User } from "firebase/auth";
+import { setAxiosDefaults } from "../../services/firebase/setAxiosDefaults";
+
+import { databaseUrl } from "../../services/firebase";
 
 export const setAuthCredentials = createAsyncThunk(
   "auth/setAuthCredentials",
-  async (user: User) => {
+  async (user: User | { uid: string; token: string }) => {
     const uid = user.uid;
-    const token = await user.getIdToken();
+    const token = "token" in user ? user.token : await user.getIdToken();
     localStorage.setItem("uid", uid);
     localStorage.setItem("token", token);
+    setAxiosDefaults(databaseUrl, uid, token);
     return { uid, token };
   },
 );
@@ -29,6 +33,14 @@ const initialState: AuthSlice = {
   uid: localStorage.getItem("uid"),
   token: localStorage.getItem("token"),
 };
+
+if (initialState.uid && initialState.token) {
+  setAxiosDefaults(
+    process.env.REACT_APP_databaseUrl,
+    initialState.uid,
+    initialState.token,
+  );
+}
 
 export const authSlice = createSlice({
   name: "auth",
