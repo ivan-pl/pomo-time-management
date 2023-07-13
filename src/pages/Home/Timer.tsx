@@ -2,7 +2,6 @@ import React, { FC } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import Button from "@mui/material/Button";
 
 const Timer: FC = () => {
@@ -26,8 +25,7 @@ const Timer: FC = () => {
           13:04
         </Typography>
         <Button
-          sx={{ backgroundColor: "white", width: "40%", fontSize: "24px" }}
-          startIcon={<PlayArrowIcon fontSize="large" />}
+          sx={{ backgroundColor: "white", width: "35%", fontSize: "24px" }}
         >
           Start
         </Button>

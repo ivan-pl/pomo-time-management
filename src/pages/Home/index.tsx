@@ -8,6 +8,7 @@ import { isCredentialsValid } from "../../services/firebase/isCredentialsValid";
 import { clearAuthCredentials, setAuthCredentials } from "../Login/authSlice";
 import MenuBar from "./MenuBar";
 import Timer from "./Timer";
+import TodoList from "./TodoList";
 
 const Home: FC = () => {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ const Home: FC = () => {
     >
       <MenuBar />
       <Timer />
-      <div>TodoList</div>
+      <TodoList />
     </Stack>
   );
 };
