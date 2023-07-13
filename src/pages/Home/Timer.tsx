@@ -25,7 +25,12 @@ const Timer: FC = () => {
           13:04
         </Typography>
         <Button
-          sx={{ backgroundColor: "white", width: "35%", fontSize: "24px" }}
+          sx={{
+            backgroundColor: "white",
+            width: "35%",
+            fontSize: "24px",
+            ":hover": { color: "white", bgcolor: "#db6b63" },
+          }}
         >
           Start
         </Button>
