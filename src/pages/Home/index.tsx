@@ -7,6 +7,7 @@ import { selectAuthCredentials } from "../../app/selectors";
 import { isCredentialsValid } from "../../services/firebase/isCredentialsValid";
 import { clearAuthCredentials, setAuthCredentials } from "../Login/authSlice";
 import MenuBar from "./MenuBar";
+import Timer from "./Timer";
 
 const Home: FC = () => {
   const navigate = useNavigate();
@@ -34,10 +35,10 @@ const Home: FC = () => {
   return (
     <Stack
       spacing={2}
-      sx={{ maxWidth: "768px", minWidth: "350px", margin: "auto" }}
+      sx={{ maxWidth: "600px", minWidth: "350px", margin: "auto" }}
     >
       <MenuBar />
-      <div>Timer</div>
+      <Timer />
       <div>TodoList</div>
     </Stack>
   );
