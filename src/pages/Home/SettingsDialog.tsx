@@ -1,9 +1,8 @@
 import React, { FC } from "react";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
+
+import BootstrapDialogTitle from "../../components/BootstrapDialogTitle";
 
 interface Props {
   open: boolean;
@@ -13,8 +12,10 @@ interface Props {
 const SettingsDialog: FC<Props> = (props) => {
   return (
     <Dialog {...props}>
-      <DialogTitle>Settings</DialogTitle>
-      <DialogContent>Some content</DialogContent>
+      <BootstrapDialogTitle onClose={props.onClose}>
+        Settings
+      </BootstrapDialogTitle>
+      <DialogContent dividers>Some content</DialogContent>
     </Dialog>
   );
 };
