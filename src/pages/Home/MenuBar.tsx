@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -11,6 +11,8 @@ import AssessmentIcon from "@mui/icons-material/Assessment";
 import ResponsiveIconButton from "../../components/ResponsiveIconButton";
 
 const MenuBar: FC = () => {
+  const [openSettings, setOpenSettings] = useState(false);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">

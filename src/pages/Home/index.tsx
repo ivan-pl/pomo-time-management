@@ -9,6 +9,7 @@ import { clearAuthCredentials, setAuthCredentials } from "../Login/authSlice";
 import MenuBar from "./MenuBar";
 import Timer from "./Timer";
 import TodoList from "./TodoList";
+import { fetchSettings } from "./settingsSlice";
 
 const Home: FC = () => {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ const Home: FC = () => {
   const { uid, token } = useAppSelector(selectAuthCredentials);
 
   useEffect(() => {
+    dispatch(fetchSettings());
     if (uid && token) {
       isCredentialsValid()
         .then((isValid) => {
