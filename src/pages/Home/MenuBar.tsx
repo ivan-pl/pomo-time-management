@@ -12,9 +12,13 @@ import { useNavigate } from "react-router-dom";
 import ResponsiveIconButton from "../../components/ResponsiveIconButton";
 import { useAppDispatch } from "../../app/hooks";
 import { clearAuthCredentials } from "../Login/authSlice";
+import SettingsDialog from "./SettingsDialog";
+import ReportDialog from "./ReportDialog";
 
 const MenuBar: FC = () => {
   const [openSettings, setOpenSettings] = useState(false);
+  const [openReport, setOpenReport] = useState(false);
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -24,38 +28,47 @@ const MenuBar: FC = () => {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <AlarmOnIcon />
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            PomoTM
-          </Typography>
-          <ResponsiveIconButton
-            color="inherit"
-            sx={{ margin: "0 6px" }}
-            startIcon={<SettingsIcon />}
-          >
-            Settings
-          </ResponsiveIconButton>
-          <ResponsiveIconButton
-            color="inherit"
-            sx={{ margin: "0 6px" }}
-            startIcon={<AssessmentIcon />}
-          >
-            Report
-          </ResponsiveIconButton>
-          <ResponsiveIconButton
-            color="inherit"
-            sx={{ margin: "0 6px" }}
-            startIcon={<LogoutIcon />}
-            onClick={handleLogout}
-          >
-            Logout
-          </ResponsiveIconButton>
-        </Toolbar>
-      </AppBar>
-    </Box>
+    <>
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static">
+          <Toolbar>
+            <AlarmOnIcon />
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              PomoTM
+            </Typography>
+            <ResponsiveIconButton
+              color="inherit"
+              sx={{ margin: "0 6px" }}
+              startIcon={<SettingsIcon />}
+              onClick={() => setOpenSettings(true)}
+            >
+              Settings
+            </ResponsiveIconButton>
+            <ResponsiveIconButton
+              color="inherit"
+              sx={{ margin: "0 6px" }}
+              startIcon={<AssessmentIcon />}
+              onClick={() => setOpenReport(true)}
+            >
+              Report
+            </ResponsiveIconButton>
+            <ResponsiveIconButton
+              color="inherit"
+              sx={{ margin: "0 6px" }}
+              startIcon={<LogoutIcon />}
+              onClick={handleLogout}
+            >
+              Logout
+            </ResponsiveIconButton>
+          </Toolbar>
+        </AppBar>
+      </Box>
+      <SettingsDialog
+        open={openSettings}
+        onClose={() => setOpenSettings(false)}
+      />
+      <ReportDialog open={openReport} onClose={() => setOpenReport(false)} />
+    </>
   );
 };
 
