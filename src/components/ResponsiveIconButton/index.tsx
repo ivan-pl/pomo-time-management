@@ -8,7 +8,7 @@ interface ResponsiveIconButtonProps extends ButtonProps {
 }
 
 const ResponsiveIconButtonStyled = styled(Button, {
-  shouldForwardProp: (prop) => prop != "breakpoint",
+  shouldForwardProp: (prop) => prop !== "breakpoint",
 })<ResponsiveIconButtonProps>(({ theme, breakpoint }) => ({
   fontSize: theme.typography.pxToRem(14),
   minWidth: "auto",

@@ -35,7 +35,7 @@ const Home: FC = () => {
     } else {
       navigate("./login");
     }
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Stack

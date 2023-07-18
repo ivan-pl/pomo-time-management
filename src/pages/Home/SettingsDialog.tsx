@@ -12,7 +12,7 @@ interface Props {
 }
 
 const SettingsDialog: FC<Props> = (props) => {
-  const { onClose: handleClose, open } = props;
+  const { onClose: handleClose } = props;
   return (
     <Dialog {...props}>
       <BootstrapDialogTitle onClose={handleClose}>
