@@ -37,12 +37,16 @@ export const settingsSlice = createSlice({
 });
 
 export const fetchSettings = (): AppThunk => async (dispatch) => {
-  const fetchedSettings = await getSettings();
-  if (!fetchedSettings) {
-    dispatch(setSettings(defaultSettings));
-    setSettingsApi(defaultSettings);
-  } else {
+  try {
+    const fetchedSettings = await getSettings();
+    if (!fetchedSettings) {
+      dispatch(setSettings(defaultSettings));
+      setSettingsApi(defaultSettings);
+      return;
+    }
     dispatch(setSettings(fetchedSettings));
+  } catch {
+    dispatch(setSettings(defaultSettings));
   }
 };
 

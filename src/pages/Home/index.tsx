@@ -17,7 +17,6 @@ const Home: FC = () => {
   const { uid, token } = useAppSelector(selectAuthCredentials);
 
   useEffect(() => {
-    dispatch(fetchSettings());
     if (uid && token) {
       isCredentialsValid()
         .then((isValid) => {
@@ -29,6 +28,9 @@ const Home: FC = () => {
         .catch(() => {
           dispatch(clearAuthCredentials());
           navigate("./login");
+        })
+        .then(() => {
+          dispatch(fetchSettings());
         });
     } else {
       navigate("./login");
