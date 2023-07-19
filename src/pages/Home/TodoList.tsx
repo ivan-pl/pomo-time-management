@@ -12,13 +12,18 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import IconButton from "@mui/material/IconButton";
 
 import AddTaskDialog from "./dialogs/AddTaskDialog";
+import UpdateTaskDialog from "./dialogs/UpdateTaskDialog";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { selectCurrentTask, selectTodoList } from "../../app/selectors";
 import { getTodoList } from "../../services/firebase/getTodoList";
-import { setCurrentTask, setTodoList } from "./taskSlice";
+import { deleteTask, setCurrentTask, setTodoList } from "./taskSlice";
+import { addTaskToHistory } from "../../services/firebase/addTaskToHistory";
+import type { Task } from "../../types/task.type";
+import { ListItem } from "@mui/material";
 
 const TodoList: FC = () => {
   const [openAddTask, setOpenAddTask] = useState(false);
+  const [updatedTask, setUpdatedTask] = useState<Task | null>(null);
   const dispatch = useAppDispatch();
   const todoList = useAppSelector(selectTodoList);
   const currentTask = useAppSelector(selectCurrentTask);
@@ -48,20 +53,32 @@ const TodoList: FC = () => {
           sx={{ bgcolor: "white" }}
         >
           {todoList.map((task) => (
-            <ListItemButton
-              id={task.id}
-              selected={currentTask?.id === task.id}
-              onClick={() => dispatch(setCurrentTask(task.id))}
+            <ListItem
+              key={task.id}
+              secondaryAction={
+                <IconButton onClick={() => setUpdatedTask(task)}>
+                  <MoreVertIcon />
+                </IconButton>
+              }
             >
-              <Checkbox edge="end" sx={{ marginRight: "4px" }} />
-              <ListItemText primary={task.name} />
-              <Typography variant="body1">
-                {task.actPomodoros}/{task.estPomodoros}
-              </Typography>
-              <IconButton>
-                <MoreVertIcon />
-              </IconButton>
-            </ListItemButton>
+              <ListItemButton
+                selected={currentTask?.id === task.id}
+                onClick={() => dispatch(setCurrentTask(task.id))}
+              >
+                <Checkbox
+                  edge="end"
+                  sx={{ marginRight: "4px" }}
+                  onChange={() => {
+                    dispatch(deleteTask(task.id));
+                    addTaskToHistory(task);
+                  }}
+                />
+                <ListItemText primary={task.name} />
+                <Typography variant="body1">
+                  {task.actPomodoros}/{task.estPomodoros}
+                </Typography>
+              </ListItemButton>
+            </ListItem>
           ))}
         </List>
         <Button
@@ -73,6 +90,13 @@ const TodoList: FC = () => {
         </Button>
       </Stack>
       <AddTaskDialog open={openAddTask} onClose={() => setOpenAddTask(false)} />
+      {updatedTask && (
+        <UpdateTaskDialog
+          open={!!updatedTask}
+          onClose={() => setUpdatedTask(null)}
+          task={updatedTask}
+        />
+      )}
     </>
   );
 };

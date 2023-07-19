@@ -6,6 +6,9 @@ type ResponseApi = {
 };
 
 export async function getTodoList(): Promise<Task[]> {
-  const response = await axios.get<ResponseApi>("tasks/todoList.json");
-  return Object.entries(response.data).map(([id, task]) => ({ ...task, id }));
+  const response = await axios.get<ResponseApi | null>("tasks/todoList.json");
+  const data = response.data;
+  return data
+    ? Object.entries(data).map(([id, task]) => ({ ...task, id }))
+    : [];
 }
