@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import ListSubheader from "@mui/material/ListSubheader";
@@ -13,9 +13,21 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import IconButton from "@mui/material/IconButton";
 
 import AddTaskDialog from "./dialogs/AddTaskDialog";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { selectTodoList } from "../../app/selectors";
+import { getTodoList } from "../../services/firebase/getTodoList";
+import { setTodoList } from "./taskSlice";
 
 const TodoList: FC = () => {
   const [openAddTask, setOpenAddTask] = useState(false);
+  const dispatch = useAppDispatch();
+  const todoList = useAppSelector(selectTodoList);
+
+  useEffect(() => {
+    getTodoList().then((list) => {
+      dispatch(setTodoList(list));
+    });
+  }, []);
 
   return (
     <>
@@ -33,19 +45,21 @@ const TodoList: FC = () => {
           }
           sx={{ bgcolor: "white" }}
         >
-          <ListItem
-            key={"123"}
-            secondaryAction={
-              <IconButton>
-                <MoreVertIcon />
-              </IconButton>
-            }
-          >
-            <Checkbox edge="end" />
-            <ListItemButton>
-              <ListItemText primary="SomeTask" />
-            </ListItemButton>
-          </ListItem>
+          {todoList.map((task) => (
+            <ListItem
+              key={task.id}
+              secondaryAction={
+                <IconButton>
+                  <MoreVertIcon />
+                </IconButton>
+              }
+            >
+              <Checkbox edge="end" />
+              <ListItemButton>
+                <ListItemText primary={task.name} />
+              </ListItemButton>
+            </ListItem>
+          ))}
         </List>
         <Button
           startIcon={<AddIcon />}

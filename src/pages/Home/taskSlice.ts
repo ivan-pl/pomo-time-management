@@ -43,9 +43,17 @@ const taskSlice = createSlice({
     addNewTask: (state, { payload }: PayloadAction<Task>) => {
       state.todoList.unshift(payload);
     },
+    setTodoList: (state, { payload }: PayloadAction<Task[]>) => {
+      state.todoList = payload;
+    },
   },
 });
 
-export const { deleteTask, setCurrentTask, updateTask, addNewTask } =
-  taskSlice.actions;
+export const {
+  deleteTask,
+  setCurrentTask,
+  updateTask,
+  addNewTask,
+  setTodoList,
+} = taskSlice.actions;
 export default taskSlice.reducer;
