@@ -18,7 +18,7 @@ const taskSlice = createSlice({
   name: "task",
   initialState,
   reducers: {
-    setCurrent: (state, { payload }: PayloadAction<string>) => {
+    setCurrentTask: (state, { payload }: PayloadAction<string>) => {
       state.current =
         state.todoList.find((task) => task.id === payload) ?? null;
     },
@@ -40,8 +40,12 @@ const taskSlice = createSlice({
         state.todoList.splice(ind, 1);
       }
     },
+    addNewTask: (state, { payload }: PayloadAction<Task>) => {
+      state.todoList.unshift(payload);
+    },
   },
 });
 
-export const { deleteTask, setCurrent, updateTask } = taskSlice.actions;
+export const { deleteTask, setCurrentTask, updateTask, addNewTask } =
+  taskSlice.actions;
 export default taskSlice.reducer;

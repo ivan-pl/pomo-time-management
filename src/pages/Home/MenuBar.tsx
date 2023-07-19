@@ -12,8 +12,8 @@ import { useNavigate } from "react-router-dom";
 import ResponsiveIconButton from "../../components/ResponsiveIconButton";
 import { useAppDispatch } from "../../app/hooks";
 import { clearAuthCredentials } from "../Login/authSlice";
-import SettingsDialog from "./SettingsDialog";
-import ReportDialog from "./ReportDialog";
+import SettingsDialog from "./dialogs/SettingsDialog";
+import ReportDialog from "./dialogs/ReportDialog";
 
 const MenuBar: FC = () => {
   const [openSettings, setOpenSettings] = useState(false);

@@ -8,12 +8,12 @@ import InputAdornment from "@mui/material/InputAdornment";
 import { Alert, Stack } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 
-import BootstrapDialogTitle from "../../components/BootstrapDialogTitle";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { selectSettings } from "../../app/selectors";
-import { setSettings } from "./settingsSlice";
-import { setSettings as setSettingsApi } from "../../services/firebase/setSettings";
-import type { SettingsSlice } from "./settingsSlice";
+import BootstrapDialogTitle from "../../../components/BootstrapDialogTitle";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { selectSettings } from "../../../app/selectors";
+import { setSettings } from "../settingsSlice";
+import { setSettings as setSettingsApi } from "../../../services/firebase/setSettings";
+import type { SettingsSlice } from "../settingsSlice";
 
 interface Props {
   open: boolean;
