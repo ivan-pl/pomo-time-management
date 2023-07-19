@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit";
-import { AppThunk } from "../../app/store";
 
+import { AppThunk } from "../../app/store";
 import { getSettings } from "../../services/firebase/getSettings";
 import { setSettings as setSettingsApi } from "../../services/firebase/setSettings";
 
-interface SettingsSlice {
+export interface SettingsSlice {
   workTime: number;
   shortBreakTime: number;
   longBreakTime: number;
@@ -20,10 +20,10 @@ const initialState: SettingsSlice = {
 };
 
 const defaultSettings: SettingsSlice = {
-  longBreakInterval: 15,
-  longBreakTime: 5,
-  shortBreakTime: 25,
-  workTime: 4,
+  longBreakInterval: 4,
+  longBreakTime: 15,
+  shortBreakTime: 5,
+  workTime: 25,
 };
 
 export const settingsSlice = createSlice({
