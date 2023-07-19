@@ -7,21 +7,21 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Button from "@mui/material/Button";
 import AddIcon from "@mui/icons-material/Add";
-import ListItem from "@mui/material/ListItem";
 import Checkbox from "@mui/material/Checkbox";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import IconButton from "@mui/material/IconButton";
 
 import AddTaskDialog from "./dialogs/AddTaskDialog";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { selectTodoList } from "../../app/selectors";
+import { selectCurrentTask, selectTodoList } from "../../app/selectors";
 import { getTodoList } from "../../services/firebase/getTodoList";
-import { setTodoList } from "./taskSlice";
+import { setCurrentTask, setTodoList } from "./taskSlice";
 
 const TodoList: FC = () => {
   const [openAddTask, setOpenAddTask] = useState(false);
   const dispatch = useAppDispatch();
   const todoList = useAppSelector(selectTodoList);
+  const currentTask = useAppSelector(selectCurrentTask);
 
   useEffect(() => {
     getTodoList().then((list) => {
@@ -34,7 +34,9 @@ const TodoList: FC = () => {
       <Stack px={3} gap={1}>
         <Stack alignItems={"center"} color={"white"}>
           <Typography variant="h5">Current task</Typography>
-          <Typography variant="body1">Something todo</Typography>
+          <Typography variant="body1">
+            {currentTask ? currentTask.name : "Task not set"}
+          </Typography>
         </Stack>
         <List
           aria-labelledby="nested-list-subheader"
@@ -46,19 +48,20 @@ const TodoList: FC = () => {
           sx={{ bgcolor: "white" }}
         >
           {todoList.map((task) => (
-            <ListItem
-              key={task.id}
-              secondaryAction={
-                <IconButton>
-                  <MoreVertIcon />
-                </IconButton>
-              }
+            <ListItemButton
+              id={task.id}
+              selected={currentTask?.id === task.id}
+              onClick={() => dispatch(setCurrentTask(task.id))}
             >
-              <Checkbox edge="end" />
-              <ListItemButton>
-                <ListItemText primary={task.name} />
-              </ListItemButton>
-            </ListItem>
+              <Checkbox edge="end" sx={{ marginRight: "4px" }} />
+              <ListItemText primary={task.name} />
+              <Typography variant="body1">
+                {task.actPomodoros}/{task.estPomodoros}
+              </Typography>
+              <IconButton>
+                <MoreVertIcon />
+              </IconButton>
+            </ListItemButton>
           ))}
         </List>
         <Button
