@@ -14,3 +14,7 @@
   - [Local installing](#local-installing)
   - [Setting up your firebase](#setting-up-firebase)
 - [License](#license)
+
+## About <a name="about"></a>
+
+This app was inspired by [Pomodoro Technique](https://en.wikipedia.org/wiki/Pomodoro_Technique), which aims to improve your productivity and reduce procrastination time. The application consists of a pomodoro timer and a to-do list, both of which have settings and can keep history. There are two ways to authenticate([Github](https://github.com/) and [Google](https://mail.google.com/)).
