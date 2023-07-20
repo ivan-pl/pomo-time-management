@@ -29,9 +29,11 @@ const TodoList: FC = () => {
   const currentTask = useAppSelector(selectCurrentTask);
 
   useEffect(() => {
-    getTodoList().then((list) => {
-      dispatch(setTodoList(list));
-    });
+    getTodoList()
+      .then((list) => {
+        dispatch(setTodoList(list));
+      })
+      .catch(() => dispatch(setTodoList([])));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
