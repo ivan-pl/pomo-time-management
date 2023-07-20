@@ -8,7 +8,6 @@
 
 - [About](#about)
   - [Built with](#built-with)
-  - [What is the Pomodoro Technique](#pomo-technique)
 - [Getting started](#getting-started)
   - [Guide](#guide)
   - [Local installing](#local-installing)
