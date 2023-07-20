@@ -22,3 +22,7 @@ This app was inspired by [Pomodoro Technique](https://en.wikipedia.org/wiki/Pomo
 ### Built with <a name="built-with"></a>
 
 [![Built with](https://skillicons.dev/icons?i=ts,react,redux,materialui,firebase&theme=light)](https://skillicons.dev)
+
+## Getting started <a name="getting-started"></a>
+
+This app has already been deployed via github pages. You can try out the app [here](https://ivan-pl.github.io/pomo-time-management/). If you want test it locally, read [Local installing](#local-installing).
