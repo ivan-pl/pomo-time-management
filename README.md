@@ -27,7 +27,7 @@ This app was inspired by [Pomodoro Technique](https://en.wikipedia.org/wiki/Pomo
 
 This app has already been deployed via github pages. You can try out the app [here](https://ivan-pl.github.io/pomo-time-management/). If you want test it locally, read [Local installing](#local-installing).
 
-### Guide
+### Guide <a name="guide"></a>
 
 1. Log in using one of the available methods:
 
@@ -46,3 +46,37 @@ This app has already been deployed via github pages. You can try out the app [he
 5. Press Start.
 
 6. When you finish the task just click on the corresponding checkbox in the to-do list.
+
+### Local installing <a name="local-installing"></a>
+
+If you would like to run this app locally you should:
+
+1. Clone repo
+
+```
+git clone https://github.com/ivan-pl/pomo-time-management.git
+```
+
+2. Install dependencies
+
+```
+npm install
+```
+
+3. Create .env in root directory. Read [Setting up firebase](#setting-up-firebase) to get variables for .env. Example:
+
+```
+REACT_APP_apiKey = "AIzaSaCs0gpaxxxxxxx-jDyVia7ixAxkjmVBY"
+REACT_APP_authDomain = "pomo-time-management.firebaseapp.com"
+REACT_APP_projectId = "pomo-time-management"
+REACT_APP_storageBucket = "pomo-time-management.appspot.com"
+REACT_APP_messagingSenderId = "2193xxxxxx088"
+REACT_APP_appId = "x:21931xxxxx088:web:1d68xxxxx688e4d45"
+REACT_APP_databaseUrl = "https://pomo-time-management-default-rtdb.europe-west1.firebasedatabase.app"
+```
+
+4. Run
+
+```
+npm start
+```
