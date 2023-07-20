@@ -67,7 +67,9 @@ const MenuBar: FC = () => {
         open={openSettings}
         onClose={() => setOpenSettings(false)}
       />
-      <ReportDialog open={openReport} onClose={() => setOpenReport(false)} />
+      {openReport && (
+        <ReportDialog open={openReport} onClose={() => setOpenReport(false)} />
+      )}
     </>
   );
 };
