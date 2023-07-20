@@ -80,3 +80,27 @@ REACT_APP_databaseUrl = "https://pomo-time-management-default-rtdb.europe-west1.
 ```
 npm start
 ```
+
+### Setting up your firebase <a name="setting-up-firebase"></a>
+
+In order to set up the app for your firebase instance you need:
+
+1. Create your firebase project and instantiate an app to get web config. All instructions you will find [here](https://firebase.google.com).
+2. Add Firebase Realtime Database and change rules to:
+
+```
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      }
+    }
+  }
+}
+```
+
+3. Add Authentication and allow auth via github and google:
+4. Edit .env with your config
+5. Run 🤗
