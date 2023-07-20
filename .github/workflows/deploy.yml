@@ -14,6 +14,14 @@ jobs:
         run: |
           npm ci
           npm run build
+        env:
+          REACT_APP_apiKey: ${{ secrets.REACT_APP_APIKEY }}
+          REACT_APP_authDomain: ${{ secrets.REACT_APP_AUTHDOMAIN }}
+          REACT_APP_projectId: ${{ secrets.REACT_APP_PROJECTID }}
+          REACT_APP_storageBucket: ${{ secrets.REACT_APP_STORAGEBUCKET }}
+          REACT_APP_messagingSenderId: ${{ secrets.REACT_APP_MESSAGINGSENDERID }}
+          REACT_APP_appId: ${{ secrets.REACT_APP_APPID }}
+          REACT_APP_databaseUrl: ${{ secrets.REACT_APP_DATABASEURL }}
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
