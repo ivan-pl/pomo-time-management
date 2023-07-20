@@ -1,6 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { Task } from "../../types/task.type";
+import { AppThunk } from "../../app/store";
+import { selectCurrentTask } from "../../app/selectors";
+import { updateTask as updateTaskApi } from "../../services/firebase/updateTask";
 
 interface TaskSlice {
   current: Task | null;
@@ -48,6 +51,19 @@ const taskSlice = createSlice({
     },
   },
 });
+
+export const increaseCurrentTask =
+  (): AppThunk => async (dispatch, getState) => {
+    const currentTask = selectCurrentTask(getState());
+    if (currentTask) {
+      const updatedTask: Task = {
+        ...currentTask,
+        actPomodoros: currentTask.actPomodoros + 1,
+      };
+      dispatch(updateTask(updatedTask));
+      updateTaskApi(updatedTask).catch();
+    }
+  };
 
 export const {
   deleteTask,
