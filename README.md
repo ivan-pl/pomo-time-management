@@ -44,3 +44,5 @@ This app has already been deployed via github pages. You can try out the app [he
 <img src="readmepics/selected_task.PNG">
 
 5. Press Start.
+
+6. When you finish the task just click on the corresponding checkbox in the to-do list.
