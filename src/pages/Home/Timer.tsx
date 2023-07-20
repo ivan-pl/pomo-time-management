@@ -42,6 +42,12 @@ const Timer: FC = () => {
   });
 
   useEffect(() => {
+    document.title = `${numToString(minutes)}:${numToString(seconds)} ${
+      status.state === "work" ? "Work" : "Rest"
+    } | Pomodoro Time Management`;
+  }, [minutes, seconds]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
     switch (status.state) {
       case "work":
         restart(getDate(settings.workTime), false);

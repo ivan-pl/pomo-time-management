@@ -1,46 +1,112 @@
-# Getting Started with Create React App
+# Pomo time management
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p>
+  <a href=""><img src="https://img.shields.io/azure-devops/build/rustwasm/gloo/6.svg?style=flat-square" alt="Build Status" /></a>
+</p>
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [About](#about)
+  - [Built with](#built-with)
+- [Getting started](#getting-started)
+  - [Guide](#guide)
+  - [Local installing](#local-installing)
+  - [Setting up your firebase](#setting-up-firebase)
+- [License](#license)
 
-### `npm start`
+## About <a name="about"></a>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+This app was inspired by [Pomodoro Technique](https://en.wikipedia.org/wiki/Pomodoro_Technique), which aims to improve your productivity and reduce procrastination time. The application consists of a pomodoro timer and a to-do list, both of which have settings and can keep history. There are two ways to authenticate([Github](https://github.com/) and [Google](https://mail.google.com/)).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Built with <a name="built-with"></a>
 
-### `npm test`
+[![Built with](https://skillicons.dev/icons?i=ts,react,redux,materialui,firebase&theme=light)](https://skillicons.dev)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting started <a name="getting-started"></a>
 
-### `npm run build`
+This app has already been deployed via github pages. You can try out the app [here](https://ivan-pl.github.io/pomo-time-management/). If you want test it locally, read [Local installing](#local-installing).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Guide <a name="guide"></a>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Log in using one of the available methods:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<img src="readmepics/auth_methods.PNG">
 
-### `npm run eject`
+2. You will see the following page:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<img src="readmepics/main_page.PNG">
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Add tasks by pressing the ADD TASK button:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+4. Select the current task by clicking on it so that the field below timer displays the name of the current task.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<img src="readmepics/selected_task.PNG">
 
-## Learn More
+5. Press Start.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+6. When you finish the task just click on the corresponding checkbox in the to-do list.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Local installing <a name="local-installing"></a>
+
+If you would like to run this app locally you should:
+
+1. Clone repo
+
+```
+git clone https://github.com/ivan-pl/pomo-time-management.git
+```
+
+2. Install dependencies
+
+```
+npm install
+```
+
+3. Create .env in root directory. Read [Setting up firebase](#setting-up-firebase) to get variables for .env. Example:
+
+```
+REACT_APP_apiKey = "AIzaSaCs0gpaxxxxxxx-jDyVia7ixAxkjmVBY"
+REACT_APP_authDomain = "pomo-time-management.firebaseapp.com"
+REACT_APP_projectId = "pomo-time-management"
+REACT_APP_storageBucket = "pomo-time-management.appspot.com"
+REACT_APP_messagingSenderId = "2193xxxxxx088"
+REACT_APP_appId = "x:21931xxxxx088:web:1d68xxxxx688e4d45"
+REACT_APP_databaseUrl = "https://pomo-time-management-default-rtdb.europe-west1.firebasedatabase.app"
+```
+
+4. Run
+
+```
+npm start
+```
+
+### Setting up your firebase <a name="setting-up-firebase"></a>
+
+In order to set up the app for your firebase instance you need:
+
+1. Create your firebase project and instantiate an app to get web config. All instructions you will find [here](https://firebase.google.com).
+2. Add Firebase Realtime Database and change rules to:
+
+```
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      }
+    }
+  }
+}
+```
+
+3. Add Authentication and allow auth via github and google:
+4. Edit .env with your config
+5. Run 🤗
+
+## License <a name="license"></a>
+
+[![MIT License][license-shield]][license-url]
+
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt

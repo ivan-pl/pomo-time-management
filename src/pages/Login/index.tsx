@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
@@ -36,6 +36,10 @@ const Login: FC = () => {
     navigate("/");
   };
   const handleError = (error: Error) => setErrorMsg(error.message);
+
+  useEffect(() => {
+    document.title = "Pomodoro Time Management";
+  }, []);
 
   return (
     <Container
