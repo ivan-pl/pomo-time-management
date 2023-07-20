@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { UserCredential } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import Alert from "@mui/material/Alert";
 
 import { auth } from "../../services/firebase";
 import SignInWithGoogle from "./SignInWithGoogle";
@@ -28,12 +29,13 @@ const Copyright: FC<any> = (props) => (
 const Login: FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   const handleSuccess = ({ user }: UserCredential) => {
     dispatch(setAuthCredentials(user));
     navigate("/");
   };
-  const handleError = (error: Error) => console.log(error);
+  const handleError = (error: Error) => setErrorMsg(error.message);
 
   return (
     <Container
@@ -59,6 +61,7 @@ const Login: FC = () => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
+        {errorMsg && <Alert severity="error">{errorMsg}</Alert>}
         <Box sx={{ mt: 1 }}>
           <SignInWithGoogle
             onSuccess={handleSuccess}
