@@ -26,3 +26,21 @@ This app was inspired by [Pomodoro Technique](https://en.wikipedia.org/wiki/Pomo
 ## Getting started <a name="getting-started"></a>
 
 This app has already been deployed via github pages. You can try out the app [here](https://ivan-pl.github.io/pomo-time-management/). If you want test it locally, read [Local installing](#local-installing).
+
+### Guide
+
+1. Log in using one of the available methods:
+
+<img src="readmepics/auth_methods.PNG">
+
+2. You will see the following page:
+
+<img src="readmepics/main_page.PNG">
+
+3. Add tasks by pressing the ADD TASK button:
+
+4. Select the current task by clicking on it so that the field below timer displays the name of the current task.
+
+<img src="readmepics/selected_task.PNG">
+
+5. Press Start.
