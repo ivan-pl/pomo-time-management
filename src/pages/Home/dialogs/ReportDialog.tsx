@@ -38,7 +38,7 @@ const ReportDialog: FC<Props> = (props) => {
         dispatch(setHistory(history));
       })
       .finally(() => setLoading(false));
-  }, [todoList]);
+  }, [todoList]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Dialog {...props}>

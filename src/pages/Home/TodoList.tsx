@@ -32,7 +32,7 @@ const TodoList: FC = () => {
     getTodoList().then((list) => {
       dispatch(setTodoList(list));
     });
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>

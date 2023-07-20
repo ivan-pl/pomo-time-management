@@ -53,7 +53,7 @@ const Timer: FC = () => {
         restart(getDate(settings.longBreakTime));
         break;
     }
-  }, [settings.longBreakTime, settings.shortBreakTime, settings.workTime]);
+  }, [settings.longBreakTime, settings.shortBreakTime, settings.workTime]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function handleExpire() {
     switch (status.state) {
