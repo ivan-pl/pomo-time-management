@@ -18,3 +18,7 @@
 ## About <a name="about"></a>
 
 This app was inspired by [Pomodoro Technique](https://en.wikipedia.org/wiki/Pomodoro_Technique), which aims to improve your productivity and reduce procrastination time. The application consists of a pomodoro timer and a to-do list, both of which have settings and can keep history. There are two ways to authenticate([Github](https://github.com/) and [Google](https://mail.google.com/)).
+
+### Built with <a name="built-with"></a>
+
+[![Built with](https://skillicons.dev/icons?i=ts,react,redux,materialui,firebase&theme=light)](https://skillicons.dev)
